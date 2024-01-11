@@ -1,0 +1,33 @@
+#!/bin/bash
+#SBATCH --job-name=CylceGAN   # Kurzname des Jobs
+#SBATCH --output=R-%j.out
+#SBATCH --partition=p2
+#SBATCH --qos=gpuultimate
+#SBATCH --gres=gpu:1
+#SBATCH --nodes=1                # Anzahl Knoten
+#SBATCH --ntasks=1               # Gesamtzahl der Tasks über alle Knoten hinweg
+#SBATCH --cpus-per-task=4        # CPU Kerne pro Task (>1 für multi-threaded Tasks)
+#SBATCH --mem=64G                # RAM pro CPU Kern #20G #32G #64G
+
+module purge
+module load python/anaconda3
+eval "$(conda shell.bash hook)"
+
+conda activate CycleGAN
+
+dataroot=./datasets/t2_semmel_pix2pix/
+name=bigger_t2_semmel_pix2pix
+load_size=1124
+crop_size=1024
+
+# one could get error messages using SBATCH --error=E-%j.err
+# display_id 0 is fix for early train freezing epoch ~ 88, see: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/issues/619
+python train.py --dataroot $dataroot --name $name --model pix2pix --direction BtoA --n_epochs 200 --n_epochs_decay 500 --display_id 0 --load_size $load_size --crop_size $crop_size
+python test.py --dataroot $dataroot --name $name --model pix2pix --direction BtoA --epoch 100 --load_size $load_size --crop_size $crop_size
+python test.py --dataroot $dataroot --name $name --model pix2pix --direction BtoA --epoch 200 --load_size $load_size --crop_size $crop_size
+python test.py --dataroot $dataroot --name $name --model pix2pix --direction BtoA --epoch 300 --load_size $load_size --crop_size $crop_size
+python test.py --dataroot $dataroot --name $name --model pix2pix --direction BtoA --epoch 400 --load_size $load_size --crop_size $crop_size
+python test.py --dataroot $dataroot --name $name --model pix2pix --direction BtoA --epoch 500 --load_size $load_size --crop_size $crop_size
+python test.py --dataroot $dataroot --name $name --model pix2pix --direction BtoA --epoch 600 --load_size $load_size --crop_size $crop_size
+python test.py --dataroot $dataroot --name $name --model pix2pix --direction BtoA --epoch 700 --load_size $load_size --crop_size $crop_size
+
