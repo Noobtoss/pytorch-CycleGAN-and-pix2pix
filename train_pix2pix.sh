@@ -15,7 +15,7 @@ eval "$(conda shell.bash hook)"
 
 conda activate CycleGAN
 
-dataroot=./datasets/pix2pix/semmel0Init #semmel0Init #semmel1SingBun #semmel2ReduDGap
+dataroot=./datasets/pix2pix/example #semmel0Init #semmel1SingBun #semmel2ReduDGap
 name=pix2pix_256_semmel0Init
 load_size=286 # 286 572 1084
 crop_size=256 # 256 512 1024
