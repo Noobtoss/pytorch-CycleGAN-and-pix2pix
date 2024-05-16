@@ -16,9 +16,9 @@ eval "$(conda shell.bash hook)"
 conda activate CycleGAN
 
 dataroot=./datasets/cycleGAN/example #semmel0Init #semmel1SingBun #semmel2ReduDGap
-name=pix2pix_256_semmel0Init
-load_size=286 # 286 572 1084
-crop_size=256 # 256 512 1024
+name=cycleGAN_1024_semmel0Init
+load_size=1084 # 286 572 1084
+crop_size=1024 # 256 512 1024
 
 # one could get error messages using SBATCH --error=E-%j.err
 # display_id 0 is fix for early train freezing epoch ~ 88, see: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/issues/619
