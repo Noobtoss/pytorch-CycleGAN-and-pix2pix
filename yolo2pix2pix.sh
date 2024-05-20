@@ -3,4 +3,9 @@
 eval "$(conda shell.bash hook)"
 conda activate CycleGAN
 
-python datasets/combine_A_and_B.py --fold_A datasets/input/example/images --fold_B datasets/input/example/masks --fold_AB datasets/pix2pix/example --no_multiprocessing
+name="all"
+fold_A="datasets/source/$name/images"
+fold_B="datasets/source/$name/masks"
+fold_AB="datasets/pix2pix/$name"
+
+python datasets/combine_A_and_B.py --fold_A "$fold_A" --fold_B "$fold_B" --fold_AB "$fold_AB" --no_multiprocessing

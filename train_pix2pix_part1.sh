@@ -34,45 +34,6 @@ names=(
   "floesserbrot_rueck"
   "fruechteschiffchenErdbeer"
   "fruechteschiffchenErdbeer_rueck"
-  "kirschtasche"
-  "kirschtasche_rueck"
-  "kuerbiskernsemmel"
-  "kuerbiskernsemmel_rueck"
-  "laugenstangeSchinkenKaese"
-  "laugenstangeSchinkenKaese_rueck"
-  "mehrkornStange"
-  "mehrkornStange_rueck"
-  "mohnschnecke"
-  "mohnschnecke_rueck"
-  "nussschnecke"
-  "nussschnecke_rueck"
-  "panneGusto"
-  "panneGusto_rueck"
-  "quarktasche"
-  "quarktasche_rueck"
-  "roggensemmel"
-  "roggensemmel_rueck"
-  "salzstange"
-  "salzstange_rueck"
-  "schinkenKaeseStange"
-  "schinkenKaeseStange_rueck"
-  "schokocroissant"
-  "schokocroissant_rueck"
-  "sonnenblumensemmel"
-  "sonnenblumensemmel_rueck"
-  "vanillehoernchen"
-  "vanillehoernchen_rueck"
-  "pfefferbrezel"
-  "pfefferbrezel_rueck"
-  "krapfen"
-  "schokokrapfen"
-  "schokokrapfen_rueck"
-  "vanillekrapfen"
-  "vanillekrapfen_rueck"
-)
-
-names=(
-  "all"
 )
 
 for name in "${names[@]}"; do
@@ -84,6 +45,6 @@ for name in "${names[@]}"; do
   # one could get error messages using SBATCH --error=E-%j.err
   # display_id 0 is fix for early train freezing epoch ~ 88, see: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/issues/619
   python train.py --dataroot $dataroot --name $name --model pix2pix --direction BtoA --n_epochs 200 --n_epochs_decay 500 --save_epoch_freq 50 --display_id 0 --load_size $load_size --crop_size $crop_size
-  python test.py --dataroot $dataroot --name $name --model pix2pix --direction BtoA --epoch 700 --load_size $load_size --crop_size $crop_size --num_test 2520
+  python test.py --dataroot $dataroot --name $name --model pix2pix --direction BtoA --epoch 700 --load_size $load_size --crop_size $crop_size --num_test 400
 
 done
