@@ -72,7 +72,7 @@ names=(
 )
 
 names=(
-  "all"
+  "all_rueck"
 )
 
 for name in "${names[@]}"; do

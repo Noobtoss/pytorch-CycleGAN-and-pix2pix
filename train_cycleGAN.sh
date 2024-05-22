@@ -72,18 +72,18 @@ names=(
 )
 
 names=(
-  "all"
+  "all_rueck"
 )
 
 for name in "${names[@]}"; do
   echo $name
 
   dataroot=./datasets/cycleGAN/$name
-  name="cycleGAN_$name"
+  name="cycleGAN_$name_short_train"
 
   # one could get error messages using SBATCH --error=E-%j.err
   # display_id 0 is fix for early train freezing epoch ~ 88, see: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/issues/619
-  python train.py --dataroot $dataroot --name $name --model cycle_gan --direction BtoA --n_epochs 200 --n_epochs_decay 500 --save_epoch_freq 50 --display_id 0 --load_size $load_size --crop_size $crop_size
+  python train.py --dataroot $dataroot --name $name --model cycle_gan --direction BtoA --n_epochs 50 --n_epochs_decay 150 --save_epoch_freq 50 --display_id 0 --load_size $load_size --crop_size $crop_size
   python test.py --dataroot $dataroot --name $name --model cycle_gan --direction BtoA --epoch 700 --load_size $load_size --crop_size $crop_size --num_test 2520
 
 done
