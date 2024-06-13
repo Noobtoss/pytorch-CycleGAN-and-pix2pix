@@ -1,7 +1,7 @@
 #!/bin/bash
 
 eval "$(conda shell.bash hook)"
-conda activate CycleGAN
+conda activate pytorch-CycleGAN-and-pix2pix
 
 name="all"
 fold_A="datasets/source/$name/images"

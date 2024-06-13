@@ -13,7 +13,7 @@ module purge
 module load python/anaconda3
 eval "$(conda shell.bash hook)"
 
-conda activate CycleGAN
+conda activatepytorch-CycleGAN-and-pix2pix
 
 load_size=1084 # 286 572 1084
 crop_size=1024 # 256 512 1024
